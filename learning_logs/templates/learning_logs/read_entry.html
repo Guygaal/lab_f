@@ -1,0 +1,18 @@
+{% extends "learning_logs/base.html" %}
+{% block content %}
+  <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+<p><b> Партия: </b> {{ entry.name }}</p>
+<p><b>Описание партии:</b>  {{ entry.text|linebreaksbr }}</p>
+<p><b>Микроскоп:</b>  {{ entry.micro|linebreaksbr }}</p>
+<p><b>Резист:</b>  {{ entry.resist|linebreaksbr }}</p>
+<p><b>Проявка:</b>  {{ entry.dev|linebreaksbr }}</p>
+<p><b>Reflow:</b>  {{ entry.ref|linebreaksbr }}</p>
+<p><b>Дополнительная информация:</b> </p>
+<form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.body }}
+  </form>
+
+
+{% endblock content %}
