@@ -7,7 +7,7 @@ django-js-asset==1.1.0
 django-summernote==0.8.11.4
 gunicorn==19.9.0
 Pillow==5.4.1
-psycopg2==2.6.2
+psycopg2==2.7.6.1
 pyparsing==2.2.0
 python-dateutil==2.7.3
 pytz==2018.5
