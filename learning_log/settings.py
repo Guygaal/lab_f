@@ -49,6 +49,8 @@ INSTALLED_APPS = [
 ]
 
 CKEDITOR_UPLOAD_PATH = "media/post_images/"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_REQUIRE_STAFF = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
