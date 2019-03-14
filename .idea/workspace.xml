@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0f69927-788d-43cd-93c7-4f641dd1041a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/learning_log/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_log/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learning_logs/migrations/0001_initial.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -405,7 +405,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="704" y="106" width="1391" height="1092" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22838138" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
