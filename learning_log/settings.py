@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q-6i+nd&fvs=))n(1b#q1q=a%ur$ia754&i%f9ie60231a9agy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,13 +44,26 @@ INSTALLED_APPS = [
     'users',
     #Сторонние приложения
     'bootstrap3',
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_summernote',
 ]
 
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'width': '120%',
+        'height': '580',
+        'lang': 'ru-ru'
+
+    }
+}
+
+
 CKEDITOR_UPLOAD_PATH = "media/post_images/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_REQUIRE_STAFF = False
+CKEDITOR_STAFF_MEMBER_REQUIRED = False
+AWS_QUERYSTRING_AUTH = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

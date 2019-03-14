@@ -11,8 +11,9 @@
         </h3>
 </li>
 {% empty %}
-<li>Ни одного раздела пока не было создано</li>
+    <!--
+     <li>Ни одного раздела пока не было создано</li> -->
 {% endfor %}
 </ul>
-  <h3><a href="{% url 'learning_logs:new_topic' %}">Добавить новый раздел </a></h3>
+ <!-- <h3><a href="{% url 'learning_logs:new_topic' %}">Добавить новый раздел </a></h3> -->
 {% endblock content %}

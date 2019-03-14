@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .models import Topic, Entry
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import TopicForm, EntryForm
+from .forms import TopicForm, EntryForm, EntryReadForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-
+from django.views.generic import ListView
+from django.db.models import Q
 
 def index(request):
     return render(request, 'learning_logs/index.html')
@@ -59,10 +60,11 @@ def new_entry(request, topic_id):
         form = EntryForm()
     else:
         # Отправлены данные POST; обработать данные.
-        form = EntryForm(data=request.POST)
+        form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
+            new_entry.name = Entry.objects.count()
             new_entry.owner = request.user
             new_entry.save()
             return HttpResponseRedirect(reverse('learning_logs:topic',
@@ -83,7 +85,7 @@ def edit_entry(request, entry_id):
         form = EntryForm(instance=entry)
     else:
         # Отправка данных POST; обработать данные.
-        form = EntryForm(instance=entry, data=request.POST)
+        form = EntryForm(request.POST, request.FILES, instance=entry)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('learning_logs:topic',
@@ -100,7 +102,30 @@ def read_entry(request, entry_id):
     #if topic.owner != request.user:
     #    raise Http404
         # Исходный запрос; форма заполняется данными текущей записи.
-    form = EntryForm(instance=entry)
+    form = EntryReadForm(instance=entry)
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/read_entry.html', context)
+
+
+@login_required
+def entry_search(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    query = request.GET.get('q')
+    query = query.replace('мпгу', 'MSUE')
+    query = query.replace('МПГУ', 'MSUE')
+    query = query.replace('МФТИ', 'MIPT')
+    query = query.replace('мфти', 'MIPT')
+    query = query.replace('ирэ', 'IRE')
+    query = query.replace('ИРЭ', 'IRE')
+    query = query.replace('другое', 'OTHER')
+
+    entries = topic.entry_set.filter(Q(name__icontains=query) |
+                               Q(text__icontains=query) |
+                               Q(microch__icontains=query) |
+                               Q(micro_adv__icontains=query) |
+                               Q(resist__icontains=query) |
+                               Q(tr_rec__icontains=query))
+    entries = entries.order_by('-date_added')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'learning_logs/topic.html', context)
 

@@ -1,17 +1,78 @@
 {% extends "learning_logs/base.html" %}
 {% block content %}
   <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-<p><b> Партия: </b> {{ entry.name }}</p>
-<p><b>Описание партии:</b>  {{ entry.text|linebreaksbr }}</p>
-<p><b>Микроскоп:</b>  {{ entry.micro|linebreaksbr }}</p>
-<p><b>Резист:</b>  {{ entry.resist|linebreaksbr }}</p>
-<p><b>Проявка:</b>  {{ entry.dev|linebreaksbr }}</p>
-<p><b>Reflow:</b>  {{ entry.ref|linebreaksbr }}</p>
-<p><b>Дополнительная информация:</b> </p>
-<form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+<h2><b> Партия: </b> {{ entry.name }}</h2>
+<form action="{% url 'learning_logs:read_entry' entry.id %}" method='get'>
     {% csrf_token %}
     {{ form.media }}
-    {{ form.body }}
+
+   <h3><b>Описание партии:</b> {{entry.text}}</h3>
+  <table cellpadding="15" cellspacing="15" border="0" align="center" >
+    <tr>
+      <td width="600">
+
+
+        {% if entry.microch == 'MSUE' %}
+        <h4><b>Микроскоп:</b> МПГУ</h4>
+        <p><b>Ток, pA:</b> {{entry.current}}</p>
+        <p><b>Ускоряющее напряжение, кВ:</b> {{entry.voltage}}</p>
+        <p><b>Wd, мм:</b> {{entry.wd}}</p>
+        <p><b>Spot Size: </b>{{entry.ss}}</p>
+        <p><b>Номер диафрагмы:</b> {{entry.diaf}}</p>
+        <p><b>Hs:</b> {{entry.hs}}</p>
+        {% endif %}
+        {% if entry.microch == 'MIPT' %}
+        <h4><b>Микроскоп:</b> МФТИ</h4>
+        <p><b>Ток, pA:</b> {{entry.current}}</p>
+        <p><b>Ускоряющее напряжение, кВ:</b> {{entry.voltage}}</p>
+        <p><b>Дополнительно:</b> {{entry.micro_adv}}</p>
+        {% endif %}
+        {% if entry.microch == 'IRE' %}
+        <h4><b>Микроскоп:</b> ИРЭ</h4>
+        <p><b>Дополнительно:</b> {{entry.micro_adv}}</p>
+        {% endif %}
+        {% if entry.microch == 'OTHER' %}
+        <h4><b>Микроскоп:</b> Другое</h4>
+        <p><b>Дополнительно:</b> {{entry.micro_adv}}</p>
+        {% endif %}
+
+      </td>
+      <td width="600">
+
+        <h4><b>Резист:</b> {{entry.resist}}</h4>
+        <p><b>Скорость нанесения, об/мин:</b> {{entry.resist_rpm}}</p>
+        <p><b>Время нанесения, секунды:</b> {{entry.resist_time}}</p>
+        {% if entry.dry_type == 'HP' %}
+        <p><b>Тип сушки:</b> Hot Plate</p>
+        {% endif %}
+        {% if entry.dry_type == 'OVEN' %}
+        <p><b>Тип сушки:</b> Oven</p>
+        {% endif %}
+        <p><b>Температура сушки, °C:</b> {{entry.dry_temp}}</p>
+        <p><b>Время сушки, секунды:</b> {{entry.dry_time}}</p>
+        <p><b>Проявитель:</b> {{entry.dev}}</p>
+        <p><b>Время проявки, секунды:</b> {{entry.dev_time}}</p>
+
+      </td>
+      <td width="600">
+
+        {% if entry.ref == 'NO' %}
+        <h4><b>Reflow:</b> Нет</h4>
+        {% endif %}
+        {% if entry.ref == 'YES' %}
+        <h4><b>Reflow:</b> Да</h4>
+        <p><b>Температура reflow, °C:</b> {{entry.ref_temp}}</p>
+        <p><b>Время reflow, секунды:</b> {{entry.ref_time}}</p>
+        {% endif %}
+        <p><b>Травление, рецепт:</b> {{entry.tr_rec}}</p>
+        <p><b>Время травления, секунды:</b> {{entry.tr_time}}</p>
+        <p><b>Скорость травления, нм/с:</b> {{entry.tr_vel}}</p>
+      </td>
+    </tr>
+  </table>
+    {{ form.pyth }}
+    {{ form.gds }}
+    {{ form.body}}
   </form>
 
 

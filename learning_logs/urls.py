@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from . import views
 urlpatterns = [
     #Домашняя страница
@@ -13,4 +14,6 @@ urlpatterns = [
     url(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
     #Страница чтения записи
     url(r'^read_entry/(?P<entry_id>\d+)/$', views.read_entry, name='read_entry'),
+    #Страница поиска
+    url(r'^results/(?P<topic_id>\d+)/$', views.entry_search, name='search_entry')
 ]

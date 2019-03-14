@@ -1,21 +1,9 @@
 {% extends 'learning_logs/base.html' %}
 
-{% block header %}
+
   <h2>{{ topic }}</h2>
-{% endblock header %}
+
 {% block content %}
-<h2>
-<a href="{% url 'learning_logs:new_entry' topic.id %}">добавить новую запись</a>
-</h2>
-<p></p>
-<form method="GET" action="{% url 'learning_logs:search_entry' topic.id %}" >
-    <input type="text" name="q" placeholder="Search" value="{{ request.GET.q }}" />
-    <button type="submit">Поиск</button>
-</form>
-<p></p>
-<p></p>
-<!-- Сюда можно включить шаблон с результатами через include
-      Или выделить для него отдельный блок -->
 {% for entry in entries %}
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -40,6 +28,6 @@
       </div>
     </div> <!-- panel -->
 {% empty %}
-    Здесь пока нет ни одной записи.
+    Ничего не найдено.
 {% endfor %}
 {% endblock content %}
