@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include(('users.urls', 'users'), namespace='users')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
     url(r'', include(('learning_logs.urls', 'learning_logs'), namespace='learning_logs')),
     path('summernote/', include('django_summernote.urls')),
 ]
