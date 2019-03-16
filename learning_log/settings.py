@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     #Сторонние приложения
     'bootstrap3',
     'django_summernote',
+    'jquery',
 ]
 
 

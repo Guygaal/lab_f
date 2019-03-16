@@ -6,6 +6,7 @@
     {% csrf_token %}
     {{ form.media }}
 
+
    <h3><b>Описание партии:</b> {{entry.text}}</h3>
   <table cellpadding="15" cellspacing="15" border="0" align="center" >
     <tr>
@@ -70,9 +71,26 @@
       </td>
     </tr>
   </table>
-    {{ form.pyth }}
-    {{ form.gds }}
+    <h4><a href="{{ entry.pyth.url }}">Python файл</a></h4>
+    <h4><a href="{{ entry.gds.url }}">GDS файл</a></h4>
     {{ form.body}}
+<script>
+   $('#id_body').summernote({
+    colors: [
+        ['white'], //first line of colors
+        ['#FFFFFF'] //second line of colors
+    ],
+  toolbar: [
+  ]
+});
+    $("#id_body").summernote("disable");
+    $(".note-editable").queue(function() {
+      $(".note-editable").css("background-color", "white");
+    });
+
+</script>
+
+
   </form>
 
 
