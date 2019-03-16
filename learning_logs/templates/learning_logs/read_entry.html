@@ -71,8 +71,16 @@
       </td>
     </tr>
   </table>
+    {% if entry.pyth %}
     <h4><a href="{{ entry.pyth.url }}">Python файл</a></h4>
+    {% else %}
+    <h4>Нет Python файла</h4>
+    {% endif%}
+    {% if entry.gds %}
     <h4><a href="{{ entry.gds.url }}">GDS файл</a></h4>
+    {% else %}
+    <h4>Нет GDS файла</h4>
+    {% endif %}
     {{ form.body}}
 <script>
    $('#id_body').summernote({
