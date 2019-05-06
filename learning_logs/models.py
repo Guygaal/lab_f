@@ -42,6 +42,7 @@ class Entry(models.Model):
     ss = models.CharField(max_length=3, blank=True, null=True, verbose_name='Spot Size')
     diaf = models.CharField(max_length=1, blank=True, null=True, verbose_name='Номер диафрагмы')
     hs = models.CharField(max_length=3, blank=True, null=True, verbose_name='hs')
+    n = models.CharField(max_length=5, blank=True, null=True, verbose_name='n')
     """-----------------------Для МФТИ----------------------------------------------"""
     """current, voltage"""
     micro_adv = models.TextField(blank=True, null=True, verbose_name='Дополнительно')

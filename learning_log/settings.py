@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q-6i+nd&fvs=))n(1b#q1q=a%ur$ia754&i%f9ie60231a9agy')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'q-6i+nd&fvs875465kdfgjkJKgfgsD%ur$ia754&i%f9ie60231a9agy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,8 +57,6 @@ SUMMERNOTE_CONFIG = {
 
     }
 }
-
-
 
 AWS_QUERYSTRING_AUTH = False
 
@@ -95,7 +93,6 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -106,7 +103,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -125,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'ru-ru'
 
@@ -138,9 +133,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = '/users/login/'
@@ -151,7 +143,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 BOOTSTRAP3 = {
     'include_jquery': True,
     }
-# Heroku: Update database configuration from $DATABASE_URL.
+
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
