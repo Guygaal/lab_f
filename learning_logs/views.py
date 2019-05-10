@@ -8,8 +8,13 @@ from django.http import HttpResponseRedirect, Http404
 from django.views.generic import ListView
 from django.db.models import Q
 
+
 def index(request):
     return render(request, 'learning_logs/index.html')
+
+
+def waiting_room(request):
+    return render(request, 'learning_logs/proof')
 
 
 @login_required

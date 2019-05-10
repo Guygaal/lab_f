@@ -25,6 +25,6 @@ def register(request):
             new_user.is_active = False
             new_user.save()
             # Выполнение входа и перенаправление на домашнюю страницу
-            return HttpResponseRedirect(reverse('learning_logs:index'))
+            return render(request, 'learning_logs/proof.html')
     context = {'form': form}
     return render(request, 'users/register.html', context)
