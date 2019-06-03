@@ -30,7 +30,7 @@ def topics(request):
 def topic(request, topic_id):
     """Выводит одну тему и все ее записи."""
     topic = Topic.objects.get(id=topic_id)
-   # if topic.owner != request.user:
+    # if topic.owner != request.user:
     #    raise Http404
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
@@ -53,6 +53,8 @@ def new_topic(request):
             return HttpResponseRedirect(reverse('learning_logs:topics'))
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
+
+
 # Create your views here.
 
 
@@ -73,7 +75,7 @@ def new_entry(request, topic_id):
             new_entry.owner = request.user
             new_entry.save()
             return HttpResponseRedirect(reverse('learning_logs:topic',
-                                        args=[topic_id]))
+                                                args=[topic_id]))
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
@@ -94,7 +96,7 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('learning_logs:topic',
-                                        args=[topic.id]))
+                                                args=[topic.id]))
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
@@ -104,9 +106,9 @@ def read_entry(request, entry_id):
     """Читает существующую запись."""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-    #if topic.owner != request.user:
+    # if topic.owner != request.user:
     #    raise Http404
-        # Исходный запрос; форма заполняется данными текущей записи.
+    # Исходный запрос; форма заполняется данными текущей записи.
     form = EntryReadForm(instance=entry)
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/read_entry.html', context)
@@ -116,21 +118,19 @@ def read_entry(request, entry_id):
 def entry_search(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     query = request.GET.get('q')
+    query.lower()
     query = query.replace('мпгу', 'MSUE')
-    query = query.replace('МПГУ', 'MSUE')
-    query = query.replace('МФТИ', 'MIPT')
     query = query.replace('мфти', 'MIPT')
     query = query.replace('ирэ', 'IRE')
-    query = query.replace('ИРЭ', 'IRE')
     query = query.replace('другое', 'OTHER')
 
     entries = topic.entry_set.filter(Q(name__icontains=query) |
-                               Q(text__icontains=query) |
-                               Q(microch__icontains=query) |
-                               Q(micro_adv__icontains=query) |
-                               Q(resist__icontains=query) |
-                               Q(tr_rec__icontains=query))
+                                     Q(text__icontains=query) |
+                                     Q(microch__icontains=query) |
+                                     Q(micro_adv__icontains=query) |
+                                     Q(resist__icontains=query) |
+                                     Q(tr_rec__icontains=query) |
+                                     Q(owner__incontains=query))
     entries = entries.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
-
