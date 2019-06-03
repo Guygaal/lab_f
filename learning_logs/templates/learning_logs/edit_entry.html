@@ -8,163 +8,167 @@
       <h2><b> Партия: </b> {{ entry.name }}</h2>
     {{ form.as_p }}
        <script>
-           window.addEventListener('DOMContentLoaded', function() {
-            var h1 = document.getElementById("id_microch");
-            var h2 = document.getElementById("id_ref");
-            h2.addEventListener('change', function(){
-                var labels = document.getElementsByTagName('LABEL');
-                var ref_temp = document.getElementById("id_ref_temp");
-                var ref_temp_l = 0;
-                var ref_time = document.getElementById("id_ref_time");
-                var ref_time_l = 0;
-                for (var i = 0; i < labels.length; i++) {
-                if (labels[i].htmlFor === "id_ref_temp") {
-                  ref_temp_l = i;
-                  }
-                 if (labels[i].htmlFor === "id_ref_time") {
-                  ref_time_l = i;
-                  }
-                  }
-                 if (h2.value === "YES") {
+window.addEventListener('DOMContentLoaded', function() {
+ var h1 = document.getElementById("id_microch");
+ var h2 = document.getElementById("id_ref");
+  function remover1() {
+     var current = document.getElementById("id_current");
+     var current_l = 0;
+     var voltage = document.getElementById("id_voltage");
+     var voltage_l = 0;
+     var wd = document.getElementById("id_wd");
+     var wd_l = 0;
+     var ss = document.getElementById("id_ss");
+     var ss_l = 0;
+     var diaf = document.getElementById("id_diaf");
+     var diaf_l = 0;
+     var hs = document.getElementById("id_hs");
+     var hs_l = 0;
+     var n = document.getElementById("id_n");
+     var n_l = 0;
+     var micro_adv = document.getElementById("id_micro_adv");
+     var micro_adv_l = 0;
+     var labels = document.getElementsByTagName('LABEL');
 
-                ref_temp.style.display = 'block';
-                labels[ref_temp_l].style.display = 'block';
-                ref_time.style.display = 'block';
-                labels[ref_time_l].style.display = 'block';
+     for (var i = 0; i < labels.length; i++) {
+     if (labels[i].htmlFor === "id_current") {
+       current_l = i;
+       }
+      if (labels[i].htmlFor === "id_voltage") {
+       voltage_l = i;
+       }
+       if (labels[i].htmlFor === "id_wd") {
+       wd_l = i;
+       }
+       if (labels[i].htmlFor === "id_ss") {
+       ss_l = i;
+       }
+       if (labels[i].htmlFor === "id_diaf") {
+       diaf_l = i;
+       }
+       if (labels[i].htmlFor === "id_hs") {
+       hs_l = i;
+       }
+       if (labels[i].htmlFor === "id_n") {
+       n_l = i;
+       }
+       if (labels[i].htmlFor === "id_micro_adv") {
+       micro_adv_l = i;
+       }
+       }
+     if (h1.value === "MSUE") {
 
-                } if (h2.value === "NO") {
+     current.style.display = 'block';
+     labels[current_l].style.display = 'block';
+     voltage.style.display = 'block';
+     labels[voltage_l].style.display = 'block';
+     wd.style.display = 'block';
+     labels[wd_l].style.display = 'block';
+     ss.style.display = 'block';
+     labels[ss_l].style.display = 'block';
+     diaf.style.display = 'block';
+     labels[diaf_l].style.display = 'block';
+     hs.style.display = 'block';
+     labels[hs_l].style.display = 'block';
+     n.style.display = 'block';
+     labels[n_l].style.display = 'block';
+     micro_adv.style.display = 'none';
+     labels[micro_adv_l].style.display = 'none';
 
-                ref_temp.style.display = 'none';
-                labels[ref_temp_l].style.display = 'none';
-                ref_time.style.display = 'none';
-                labels[ref_time_l].style.display = 'none';
+     } if (h1.value === "MIPT") {
 
-                }
-            });
-            h1.addEventListener('change', function(){
-                var current = document.getElementById("id_current");
-                var current_l = 0;
-                var voltage = document.getElementById("id_voltage");
-                var voltage_l = 0;
-                var wd = document.getElementById("id_wd");
-                var wd_l = 0;
-                var ss = document.getElementById("id_ss");
-                var ss_l = 0;
-                var diaf = document.getElementById("id_diaf");
-                var diaf_l = 0;
-                var hs = document.getElementById("id_hs");
-                var hs_l = 0;
-                var n = document.getElementById("id_n");
-                var n_l = 0;
-                var micro_adv = document.getElementById("id_micro_adv");
-                var micro_adv_l = 0;
-                var labels = document.getElementsByTagName('LABEL');
+     current.style.display = 'block';
+     labels[current_l].style.display = 'block';
+     voltage.style.display = 'block';
+     labels[voltage_l].style.display = 'block';
+     wd.style.display = 'none';
+     labels[wd_l].style.display = 'none';
+     ss.style.display = 'none';
+     labels[ss_l].style.display = 'none';
+     diaf.style.display = 'none';
+     labels[diaf_l].style.display = 'none';
+     hs.style.display = 'none';
+     labels[hs_l].style.display = 'none';
+     n.style.display = 'none';
+     labels[n_l].style.display = 'none';
+     micro_adv.style.display = 'block';
+     labels[micro_adv_l].style.display = 'block';
 
-                for (var i = 0; i < labels.length; i++) {
-                if (labels[i].htmlFor === "id_current") {
-                  current_l = i;
-                  }
-                 if (labels[i].htmlFor === "id_voltage") {
-                  voltage_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_wd") {
-                  wd_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_ss") {
-                  ss_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_diaf") {
-                  diaf_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_hs") {
-                  hs_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_n") {
-                  n_l = i;
-                  }
-                  if (labels[i].htmlFor === "id_micro_adv") {
-                  micro_adv_l = i;
-                  }
-                  }
-                if (h1.value === "MSUE") {
+     } if (h1.value === "IRE") {
 
-                current.style.display = 'block';
-                labels[current_l].style.display = 'block';
-                voltage.style.display = 'block';
-                labels[voltage_l].style.display = 'block';
-                wd.style.display = 'block';
-                labels[wd_l].style.display = 'block';
-                ss.style.display = 'block';
-                labels[ss_l].style.display = 'block';
-                diaf.style.display = 'block';
-                labels[diaf_l].style.display = 'block';
-                hs.style.display = 'block';
-                labels[hs_l].style.display = 'block';
-                n.style.display = 'block';
-                labels[n_l].style.display = 'block';
-                micro_adv.style.display = 'none';
-                labels[micro_adv_l].style.display = 'none';
+     current.style.display = 'none';
+     labels[current_l].style.display = 'none';
+     voltage.style.display = 'none';
+     labels[voltage_l].style.display = 'none';
+     wd.style.display = 'none';
+     labels[wd_l].style.display = 'none';
+     ss.style.display = 'none';
+     labels[ss_l].style.display = 'none';
+     diaf.style.display = 'none';
+     labels[diaf_l].style.display = 'none';
+     hs.style.display = 'none';
+     labels[hs_l].style.display = 'none';
+     n.style.display = 'none';
+     labels[n_l].style.display = 'none';
+     micro_adv.style.display = 'block';
+     labels[micro_adv_l].style.display = 'block';
 
-                } if (h1.value === "MIPT") {
+     } if (h1.value === "OTHER") {
 
-                current.style.display = 'block';
-                labels[current_l].style.display = 'block';
-                voltage.style.display = 'block';
-                labels[voltage_l].style.display = 'block';
-                wd.style.display = 'none';
-                labels[wd_l].style.display = 'none';
-                ss.style.display = 'none';
-                labels[ss_l].style.display = 'none';
-                diaf.style.display = 'none';
-                labels[diaf_l].style.display = 'none';
-                hs.style.display = 'none';
-                labels[hs_l].style.display = 'none';
-                n.style.display = 'none';
-                labels[n_l].style.display = 'none';
-                micro_adv.style.display = 'block';
-                labels[micro_adv_l].style.display = 'block';
+     current.style.display = 'none';
+     labels[current_l].style.display = 'none';
+     voltage.style.display = 'none';
+     labels[voltage_l].style.display = 'none';
+     wd.style.display = 'none';
+     labels[wd_l].style.display = 'none';
+     ss.style.display = 'none';
+     labels[ss_l].style.display = 'none';
+     diaf.style.display = 'none';
+     labels[diaf_l].style.display = 'none';
+     hs.style.display = 'none';
+     labels[hs_l].style.display = 'none';
+     n.style.display = 'none';
+     labels[n_l].style.display = 'none';
+     micro_adv.style.display = 'block';
+     labels[micro_adv_l].style.display = 'block';
+     }
+ }
+ remover1();
+  function remover2() {
+  var labels = document.getElementsByTagName('LABEL');
+     var ref_temp = document.getElementById("id_ref_temp");
+     var ref_temp_l = 0;
+     var ref_time = document.getElementById("id_ref_time");
+     var ref_time_l = 0;
+     for (var i = 0; i < labels.length; i++) {
+     if (labels[i].htmlFor === "id_ref_temp") {
+       ref_temp_l = i;
+       }
+      if (labels[i].htmlFor === "id_ref_time") {
+       ref_time_l = i;
+       }
+       }
+      if (h2.value === "YES") {
 
-                } if (h1.value === "IRE") {
+     ref_temp.style.display = 'block';
+     labels[ref_temp_l].style.display = 'block';
+     ref_time.style.display = 'block';
+     labels[ref_time_l].style.display = 'block';
 
-                current.style.display = 'none';
-                labels[current_l].style.display = 'none';
-                voltage.style.display = 'none';
-                labels[voltage_l].style.display = 'none';
-                wd.style.display = 'none';
-                labels[wd_l].style.display = 'none';
-                ss.style.display = 'none';
-                labels[ss_l].style.display = 'none';
-                diaf.style.display = 'none';
-                labels[diaf_l].style.display = 'none';
-                hs.style.display = 'none';
-                labels[hs_l].style.display = 'none';
-                n.style.display = 'none';
-                labels[n_l].style.display = 'none';
-                micro_adv.style.display = 'block';
-                labels[micro_adv_l].style.display = 'block';
+     } if (h2.value === "NO") {
 
-                } if (h1.value === "OTHER") {
+     ref_temp.style.display = 'none';
+     labels[ref_temp_l].style.display = 'none';
+     ref_time.style.display = 'none';
+     labels[ref_time_l].style.display = 'none';
 
-                current.style.display = 'none';
-                labels[current_l].style.display = 'none';
-                voltage.style.display = 'none';
-                labels[voltage_l].style.display = 'none';
-                wd.style.display = 'none';
-                labels[wd_l].style.display = 'none';
-                ss.style.display = 'none';
-                labels[ss_l].style.display = 'none';
-                diaf.style.display = 'none';
-                labels[diaf_l].style.display = 'none';
-                hs.style.display = 'none';
-                labels[hs_l].style.display = 'none';
-                n.style.display = 'none';
-                labels[n_l].style.display = 'none';
-                micro_adv.style.display = 'block';
-                labels[micro_adv_l].style.display = 'block';
-                }
-            });
-           });
-       </script>
+     }
+  }
+  remover2();
+ h2.addEventListener('change', remover2);
+ h1.addEventListener('change', remover1);
+});
+</script>
     <button name="submit">Сохранить изменения</button>
        <h1>
        </h1>
