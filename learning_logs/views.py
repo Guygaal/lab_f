@@ -130,7 +130,9 @@ def entry_search(request, topic_id):
                                      Q(micro_adv__icontains=query) |
                                      Q(resist__icontains=query) |
                                      Q(tr_rec__icontains=query) |
-                                     Q(owner__username__icontains=query))
+                                     Q(owner__username__icontains=query) |
+                                     Q(owner__first_name__icontains=query) |
+                                     Q(owner__last_name__icontains=query))
     entries = entries.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
