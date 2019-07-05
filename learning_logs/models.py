@@ -46,6 +46,10 @@ class Entry(models.Model):
     """-----------------------Для МФТИ----------------------------------------------"""
     """current, voltage"""
     micro_adv = models.TextField(blank=True, null=True, verbose_name='Дополнительно')
+    exp_time = models.CharField(max_length=10, blank=True, null=True, verbose_name='Время экспонирования в точке, мкс')
+    dose = models.CharField(max_length=10, blank=True, null=True, verbose_name='Доза, мкКл/см^2')
+    exp_size = models.CharField(max_length=10, blank=True, null=True, verbose_name='Длина стороны квадрата поля экспонирования, мкм')
+    num_dots = models.CharField(max_length=10, blank=True, null=True, verbose_name='Количество точек')
     """-----------------------Для ИРЭ----------------------------------------------"""
     """micro_adv"""
     """Другое"""

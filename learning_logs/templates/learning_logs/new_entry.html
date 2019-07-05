@@ -28,6 +28,14 @@ window.addEventListener('DOMContentLoaded', function() {
      var n_l = 0;
      var micro_adv = document.getElementById("id_micro_adv");
      var micro_adv_l = 0;
+     var exp_time = document.getElementById("id_exp_time");
+     var exp_time_l = 0;
+     var exp_size = document.getElementById("id_exp_size");
+     var exp_size_l = 0;
+     var dose = document.getElementById("id_dose");
+     var dose_l = 0;
+     var num_dots = document.getElementById("id_num_dots");
+     var num_dots_l = 0;
      var labels = document.getElementsByTagName('LABEL');
 
      for (var i = 0; i < labels.length; i++) {
@@ -55,6 +63,18 @@ window.addEventListener('DOMContentLoaded', function() {
        if (labels[i].htmlFor === "id_micro_adv") {
        micro_adv_l = i;
        }
+       if (labels[i].htmlFor === "id_exp_time") {
+       exp_time_l = i;
+       }
+       if (labels[i].htmlFor === "id_dose") {
+       dose_l = i;
+       }
+       if (labels[i].htmlFor === "id_exp_size") {
+       exp_size_l = i;
+       }
+       if (labels[i].htmlFor === "id_num_dots") {
+       num_dots_l = i;
+       }
        }
      if (h1.value === "MSUE") {
 
@@ -75,6 +95,18 @@ window.addEventListener('DOMContentLoaded', function() {
      micro_adv.style.display = 'none';
      labels[micro_adv_l].style.display = 'none';
 
+     exp_time.style.display = 'none';
+     labels[exp_time_l].style.display = 'none';
+
+     dose.style.display = 'none';
+     labels[dose_l].style.display = 'none';
+
+     exp_size.style.display = 'none';
+     labels[exp_size_l].style.display = 'none';
+
+     num_dots.style.display = 'none';
+     labels[num_dots_l].style.display = 'none';
+
      } if (h1.value === "MIPT") {
 
      current.style.display = 'block';
@@ -91,6 +123,19 @@ window.addEventListener('DOMContentLoaded', function() {
      labels[hs_l].style.display = 'none';
      n.style.display = 'none';
      labels[n_l].style.display = 'none';
+
+     exp_time.style.display = 'block';
+     labels[exp_time_l].style.display = 'block';
+
+     dose.style.display = 'block';
+     labels[dose_l].style.display = 'block';
+
+     exp_size.style.display = 'block';
+     labels[exp_size_l].style.display = 'block';
+
+     num_dots.style.display = 'block';
+     labels[num_dots_l].style.display = 'block';
+
      micro_adv.style.display = 'block';
      labels[micro_adv_l].style.display = 'block';
 
@@ -113,6 +158,18 @@ window.addEventListener('DOMContentLoaded', function() {
      micro_adv.style.display = 'block';
      labels[micro_adv_l].style.display = 'block';
 
+     exp_time.style.display = 'none';
+     labels[exp_time_l].style.display = 'none';
+
+     dose.style.display = 'none';
+     labels[dose_l].style.display = 'none';
+
+     exp_size.style.display = 'none';
+     labels[exp_size_l].style.display = 'none';
+
+     num_dots.style.display = 'none';
+     labels[num_dots_l].style.display = 'none';
+
      } if (h1.value === "OTHER") {
 
      current.style.display = 'none';
@@ -131,6 +188,18 @@ window.addEventListener('DOMContentLoaded', function() {
      labels[n_l].style.display = 'none';
      micro_adv.style.display = 'block';
      labels[micro_adv_l].style.display = 'block';
+
+     exp_time.style.display = 'none';
+     labels[exp_time_l].style.display = 'none';
+
+     dose.style.display = 'none';
+     labels[dose_l].style.display = 'none';
+
+     exp_size.style.display = 'none';
+     labels[exp_size_l].style.display = 'none';
+
+     num_dots.style.display = 'none';
+     labels[num_dots_l].style.display = 'none';
      }
  }
  remover1();
