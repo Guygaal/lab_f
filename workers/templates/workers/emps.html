@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+{% block header %}
+  <h1>Сотрудники</h1>
+{% endblock header %}
+{% block content %}
+<ul>
+{% for emp in emps %}
+<li>
+        <h3>
+          <a href="{% url 'workers:emp' emp.id %}">{{ emp }}</a>
+        </h3>
+</li>
+{% empty %}
+
+
+{% endfor %}
+</ul>
+<h3><a href="{% url 'workers:new_emp' %}">Добавить нового сотрудника </a></h3>
+{% endblock content %}

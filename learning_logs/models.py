@@ -19,6 +19,7 @@ MICRO_CHOICES = (
     ('IRE', 'ИРЭ'),
     ('OTHER', 'Другое'),
 )
+
 DRY_CHOICES = (
     ('HP', 'hot plate'),
     ('OVEN', 'oven'),

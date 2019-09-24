@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include(('users.urls', 'users'), namespace='users')),
+    url(r'^projects/', include(('projects.urls', 'projects'), namespace='projects')),
+    url(r'^workers/', include(('workers.urls', 'workers'), namespace='workers')),
     url(r'', include(('learning_logs.urls', 'learning_logs'), namespace='learning_logs')),
     path('summernote/', include('django_summernote.urls')),
 ]

@@ -29,6 +29,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'learning_logs:topics' %}">Разделы</a></li>
+            <li><a href="{% url 'projects:tasks' %}">Проекты</a></li>
+            <li><a href="{% url 'workers:emps' %}">Сотрудники</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
