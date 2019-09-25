@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
     """Проект"""
-    emps = models.ManyToManyField('workers.Emp')
+#    emps = models.ManyToManyField('workers.Emp')
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
