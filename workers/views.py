@@ -5,7 +5,7 @@ from django.shortcuts import render
 from .models import Emp
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import EmpForm
+from .forms import EmpForm, AddTasks
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 
@@ -63,3 +63,21 @@ def edit_emp(request, emp_id):
                                                 args=[emp.id]))
     context = {'emp': emp, 'form': form}
     return render(request, 'workers/edit_emp.html', context)
+
+
+@login_required
+def add_tasks(request, emp_id):
+    """Редактирует существующий проект."""
+    emp = Emp.objects.get(id=emp_id)
+    if request.method != 'POST':
+        # Исходный запрос; форма заполняется данными текущей записи.
+        form = AddTasks()
+    else:
+        # Отправка данных POST; обработать данные.
+        form = AddTasks(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('workers:emp',
+                                                args=[emp.id]))
+    context = {'emp': emp, 'form': form}
+    return render(request, 'workers/add_tasks.html', context)
