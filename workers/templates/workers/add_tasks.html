@@ -1,14 +1,13 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
-  <h1>Проекты</h1>
+  <h1>Выберите проекты, которые желаете добавить</h1>
 {% endblock header %}
 {% block content %}
-
-
-        <h3>
-          {{ AddTasks.tasks }}
-        </h3>
-
-
-
+{% for task in form.tasks %}
+{% for tasks in emp.tasks. %}
+{% if task ==
+    <h4 class="checkbox">
+      {{ tasks }}
+    </h4>
+{% endfor %}
 {% endblock content %}

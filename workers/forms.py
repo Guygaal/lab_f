@@ -11,7 +11,7 @@ class EmpForm(forms.ModelForm):
 
 
 class AddTasks(forms.Form):
-    tasks = forms.ModelMultipleChoiceField(
+    task = forms.ModelMultipleChoiceField(
         queryset=Task.objects.order_by('text'),
         widget=forms.CheckboxSelectMultiple,
     )
