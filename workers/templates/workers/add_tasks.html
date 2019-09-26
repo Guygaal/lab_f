@@ -3,11 +3,15 @@
   <h1>Выберите проекты, которые желаете добавить</h1>
 {% endblock header %}
 {% block content %}
-{% for task in form.tasks %}
-{% for tasks in emp.tasks. %}
-{% if task ==
-    <h4 class="checkbox">
-      {{ tasks }}
+<form action="{% url 'workers:add_tasks' emp.id %}" method="post">
+    {% csrf_token %}
+{% for task in form.task %}
+
+    <h4>
+      {{ task }}
     </h4>
+
 {% endfor %}
+    <button name="submit">Сохранить изменения</button>
+    </form>
 {% endblock content %}

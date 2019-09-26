@@ -76,7 +76,11 @@ def add_tasks(request, emp_id):
         # Отправка данных POST; обработать данные.
         form = AddTasks(request.POST)
         if form.is_valid():
-            form.save()
+            #form.task.save()
+            tasks = form.widget
+            for task in tasks:
+                if task.is_checked:
+                    emp.tasks.add(task)
             return HttpResponseRedirect(reverse('workers:emp',
                                                 args=[emp.id]))
     context = {'emp': emp, 'form': form}
