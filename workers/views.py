@@ -8,6 +8,8 @@ from django.urls import reverse
 from .forms import EmpForm, AddTasks
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
+from projects.models import Task
+
 
 @login_required
 def emps(request):
@@ -24,7 +26,7 @@ def emp(request, emp_id):
     emp = Emp.objects.get(id=emp_id)
     # if emp.owner != request.user:
     #    raise Http404
-    #emps = emp.emp_set.order_by('-date_added')
+    # emps = emp.emp_set.order_by('-date_added')
     context = {'emp': emp}
     return render(request, 'workers/emp.html', context)
 
@@ -69,19 +71,22 @@ def edit_emp(request, emp_id):
 def add_tasks(request, emp_id):
     """Редактирует существующий проект."""
     emp = Emp.objects.get(id=emp_id)
+    emp.save()
     if request.method != 'POST':
         # Исходный запрос; форма заполняется данными текущей записи.
         form = AddTasks()
     else:
         # Отправка данных POST; обработать данные.
-        form = AddTasks(request.POST)
-        if form.is_valid():
-            #form.task.save()
-            tasks = form.widget
-            for task in tasks:
-                if task.is_checked:
-                    emp.tasks.add(task)
-            return HttpResponseRedirect(reverse('workers:emp',
-                                                args=[emp.id]))
+        # form.task.save()
+        new_tasks = request.POST.getlist('task')
+        tasks = Task.objects.order_by('text')
+        for task in tasks:
+            for number in new_tasks:
+                if int(task.id) == int(number):
+                    new_one = Task.objects.get(id=task.id)
+                    emp.tasks.add(new_one)
+        emp.save()
+        return HttpResponseRedirect(reverse('workers:emp',
+                                            args=[emp.id]))
     context = {'emp': emp, 'form': form}
     return render(request, 'workers/add_tasks.html', context)

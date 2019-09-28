@@ -4,9 +4,11 @@
   <h2>{{ emp.text }}</h2>
 {% endblock header %}
 {% block content %}
+{% for task in emp.tasks.all %}
 <h2>
-{{ emp.tasks }}
+ <a href="{% url 'projects:task' task.id %}">{{ task.text }}</a>
 </h2>
+{% endfor %}
 <p><a href="{% url 'workers:add_tasks' emp.id %}">Добавить проект</a></p>
 
 <p></p>
