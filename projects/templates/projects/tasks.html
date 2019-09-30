@@ -7,7 +7,7 @@
 {% for task in tasks %}
 <li>
         <h3>
-          <a href="{% url 'projects:task' task.id %}">{{ task }}</a>
+          <a href="{% url 'projects:task' task.id %}">{{ task.text }}</a>
         </h3>
 </li>
 {% empty %}

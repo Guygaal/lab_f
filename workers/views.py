@@ -90,3 +90,23 @@ def add_tasks(request, emp_id):
                                             args=[emp.id]))
     context = {'emp': emp, 'form': form}
     return render(request, 'workers/add_tasks.html', context)
+
+
+@login_required
+def rem_tasks(request, emp_id, task_id):
+    """Редактирует существующий проект."""
+    emp = Emp.objects.get(id=emp_id)
+    emp.save()
+    if request.method != 'POST':
+        print('a')
+        # Исходный запрос; форма заполняется данными текущей записи.
+    else:
+        # Отправка данных POST; обработать данные.
+        # form.task.save()
+        task = Task.objects.get(id=task_id)
+        emp.tasks.remove(task)
+        emp.save()
+        return HttpResponseRedirect(reverse('workers:emp',
+                                            args=[emp.id]))
+    context = {'emp': emp}
+    return render(request, 'workerss/add_tasks.html', context)

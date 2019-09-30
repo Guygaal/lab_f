@@ -1,13 +1,35 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block header %}
-  <h2>{{ task }}</h2>
+  <h2>{{ task.text }}</h2>
+<h4><a href="{% url 'projects:read_task' task.id %}">Подробная информация</a> </h4>
 {% endblock header %}
 {% block content %}
-<h2>
+<h2>Исполнители</h2>
 
+ <table cellpadding="15" cellspacing="15" border="0" align="center" >
+    <tr>
+      <td width="600">
+{% for emp in task.emp_set.all %}
+<h2>
+ <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }}</a>
 </h2>
-<p></p>
+{% endfor %}
+      </td>
+      <td width="600">
+       {% for emp in task.emp_set.all %}
+<form action="{% url 'projects:rem_emps' emp.id task.id %}" method="post" class="form">
+        {% csrf_token %}
+  <h2></h2>
+      <button name="submit">Удалить из проекта</button>
+
+</form>
+        {% endfor %}
+      </td>
+    </tr>
+ </table>
+<p><a href="{% url 'projects:add_emps' task.id %}">Добавить исполнителя</a></p>
+
 
 <p></p>
 <p></p>

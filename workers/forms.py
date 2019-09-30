@@ -7,8 +7,8 @@ from projects.models import Task
 class EmpForm(forms.ModelForm):
     class Meta:
         model = Emp
-        fields = ['text']
-        labels = {'text': ''}
+        fields = ['text', 'name1', 'name2', 'spin', 'res_id', 'sc_id', 'inn', 'snils', 'birthday', 'passport']
+        labels = {'text': 'Фамилия'}
 
 
 class AddTasks(forms.ModelForm):

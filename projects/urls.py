@@ -1,5 +1,5 @@
 from django.conf.urls import url
-
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -9,4 +9,8 @@ urlpatterns = [
     url(r'^new_task/$', views.new_task, name='new_task'),
     #Страница для редактирования записи
     url(r'^edit_task/(?P<task_id>\d+)/$', views.edit_task, name='edit_task'),
+    # Для добавления людей
+    url(r'^add_emps/(?P<task_id>\d+)/$', views.add_emps, name='add_emps'),
+    url(r'^rem_emps/(?P<emp_id>\d+)/(?P<task_id>\d+)/$', views.rem_emps, name='rem_emps'),
+    url(r'^read_task/(?P<task_id>\d+)/$', views.read_task, name='read_task'),
 ]
