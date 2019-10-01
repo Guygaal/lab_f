@@ -127,3 +127,37 @@ def read_task(request, task_id):
     form = TaskForm(instance=task)
     context = {'task': task, 'form': form}
     return render(request, 'projects/read_task.html', context)
+
+
+@login_required
+def search_task(request):
+    query = request.GET.get('q')
+    query.lower()
+    tasks = Task.objects.filter(Q(text__icontains=query))
+    tasks = tasks.order_by('text')
+    context = {'tasks': tasks}
+    return render(request, 'projects/tasks.html', context)
+
+
+@login_required
+def make_leader(request, emp_id, task_id):
+    """Редактирует существующий проект."""
+    task = Task.objects.get(id=task_id)
+    task.save()
+    if request.method != 'POST':
+        # Исходный запрос; форма заполняется данными текущей записи.
+        form = AddEmps()
+    else:
+        # Отправка данных POST; обработать данные.
+        # form.task.save()
+        emp = Emp.objects.get(id=emp_id)
+        if emp.leader:
+            emp.leader = False
+        else:
+            emp.leader = True
+        emp.save()
+        task.save()
+        return HttpResponseRedirect(reverse('projects:task',
+                                            args=[task.id]))
+    context = {'task': task, 'form': form}
+    return render(request, 'projects/add_emps.html', context)

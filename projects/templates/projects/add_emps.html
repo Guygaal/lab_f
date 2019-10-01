@@ -6,12 +6,12 @@
 <form action="{% url 'projects:add_emps' task.id %}" method="post" class="form">
     {% csrf_token %}
 {% for emp in form.emp %}
-
+{% if emp not in task.emp_set.all %}
     <h4>
         <input type="checkbox" name="emp" value="{{emp.id}}" id="id_emp_{{emp.id}}">
       {{ emp.text }}
     </h4>
-
+{% endif %}
 {% endfor %}
     <button name="submit">Сохранить изменения</button>
     </form>

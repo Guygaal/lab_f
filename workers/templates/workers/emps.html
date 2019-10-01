@@ -3,11 +3,18 @@
   <h1>Сотрудники</h1>
 {% endblock header %}
 {% block content %}
+
+    <form method="GET" action="{% url 'workers:search_emp' %}" >
+    <input type="text" name="q" placeholder="Поиск" value="{{ request.GET.q }}" />
+    <button type="submit">Поиск</button>
+</form>
+<p></p>
 <ul>
 {% for emp in emps %}
+
 <li>
         <h3>
-          <a href="{% url 'workers:emp' emp.id %}">{{ emp }}</a>
+          <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }} {{ emp.name1 }}</a>
         </h3>
 </li>
 {% empty %}

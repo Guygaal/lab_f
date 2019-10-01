@@ -7,6 +7,7 @@ from projects.models import Task
 class Emp(models.Model):
     """Проект"""
     tasks = models.ManyToManyField(Task)
+    leader = models.BooleanField(default=False)
     text = models.CharField(max_length=200, blank=True, null=True, verbose_name='Фамилия')
     name1 = models.CharField(max_length=200, blank=True, null=True, verbose_name='Имя')
     name2 = models.CharField(max_length=200, blank=True, null=True, verbose_name='Отчество')

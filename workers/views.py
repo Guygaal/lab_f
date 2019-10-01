@@ -9,6 +9,7 @@ from .forms import EmpForm, AddTasks
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from projects.models import Task
+from django.db.models import Q
 
 
 @login_required
@@ -109,4 +110,26 @@ def rem_tasks(request, emp_id, task_id):
         return HttpResponseRedirect(reverse('workers:emp',
                                             args=[emp.id]))
     context = {'emp': emp}
-    return render(request, 'workerss/add_tasks.html', context)
+    return render(request, 'workers/add_tasks.html', context)
+
+
+@login_required
+def read_emp(request, emp_id):
+    """Читает существующую запись."""
+    emp = Emp.objects.get(id=emp_id)
+    # if topic.owner != request.user:
+    #    raise Http404
+    # Исходный запрос; форма заполняется данными текущей записи.
+    form = EmpForm(instance=emp)
+    context = {'emp': emp, 'form': form}
+    return render(request, 'workers/read_emp.html', context)
+
+
+@login_required
+def search_emp(request):
+    query = request.GET.get('q')
+    query.lower()
+    emps = Emp.objects.filter(Q(text__icontains=query))
+    emps = emps.order_by('text')
+    context = {'emps': emps}
+    return render(request, 'workers/emps.html', context)

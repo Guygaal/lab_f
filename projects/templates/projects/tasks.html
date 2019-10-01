@@ -3,6 +3,10 @@
   <h1>Проекты</h1>
 {% endblock header %}
 {% block content %}
+    <form method="GET" action="{% url 'projects:search_task' %}" >
+    <input type="text" name="q" placeholder="Поиск" value="{{ request.GET.q }}" />
+    <button type="submit">Поиск</button>
+</form>
 <ul>
 {% for task in tasks %}
 <li>
