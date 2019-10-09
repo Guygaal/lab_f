@@ -13,7 +13,7 @@
 {% for emp in task.emp_set.all %}
           {% if emp.leader %}
 <h2>
- <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }}</a>
+ <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }}  {{emp.name1}}</a>
 </h2>
           {% endif %}
 {% endfor %}
@@ -53,7 +53,7 @@
 {% for emp in task.emp_set.all %}
           {% if not emp.leader %}
 <h2>
- <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }}</a>
+ <a href="{% url 'workers:emp' emp.id %}">{{ emp.text }}  {{emp.name1}}</a>
 </h2>
           {% endif %}
 {% endfor %}
