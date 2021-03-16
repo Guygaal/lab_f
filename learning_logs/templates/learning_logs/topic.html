@@ -30,10 +30,8 @@
           {{ ' ' }}
           {{ entry.owner.first_name }}
           <small>
-            {% if entry.owner == request.user %}
             <a href="{% url 'learning_logs:edit_entry' entry.id %}">
               изменить запись</a>
-            {% endif %}
               </small>
         </h3>
       </div>

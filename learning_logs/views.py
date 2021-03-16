@@ -85,8 +85,8 @@ def edit_entry(request, entry_id):
     """Редактирует существующую запись."""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-    if entry.owner != request.user:
-        raise Http404
+    #if entry.owner != request.user:
+    #   raise Http404
     if request.method != 'POST':
         # Исходный запрос; форма заполняется данными текущей записи.
         form = EntryForm(instance=entry)
